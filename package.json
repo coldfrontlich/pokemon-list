@@ -9,10 +9,19 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@linaria/core": "^6.2.0",
     "@linaria/react": "^6.2.1",
+    "@wyw-in-js/babel-preset": "^0.5.5",
     "astro": "^5.3.0",
     "axios": "^1.7.9",
+    "normalize.css": "^8.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@wyw-in-js/vite": "^0.5.5"
   }
 }
