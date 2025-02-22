@@ -5,7 +5,7 @@ export const globalStyles = css`
 	:global() {
 		body {
 			font-family: 'Raleway', Arial, sans-serif;
-			font-size: 18px;
+			font-size: 16px;
 			background-color: #131313;
 			color: #FFFFFF;
 			display: flex;
