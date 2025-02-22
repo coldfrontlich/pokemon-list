@@ -35,6 +35,7 @@ const CardImage = styled.img`
   min-width: 25rem;
   min-height: 12.5rem;
 	align-self: center;
+	
 `
 
 const CardInfo = styled.p`

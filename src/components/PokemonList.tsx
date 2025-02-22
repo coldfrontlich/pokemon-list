@@ -27,6 +27,7 @@ const TitleContainer = styled.div`
 		font-size: 0.75rem;
 		padding: 0.4375rem;
 		border: 1px solid #ffffff;
+		user-select: none;
 	}
 `
 const LogoContainer = styled.div`
@@ -39,6 +40,7 @@ const LogoContainer = styled.div`
 		font-weight: 500;
 		font-size: 0.75rem;
 		line-height: 0.75rem;
+		user-select: none;
 	}
 `
 
@@ -68,6 +70,15 @@ const EmptyCard = styled.div`
 	flex-direction: column;
 	align-items: center;
 	gap: 0.75rem;
+`
+
+const PlaceholderChip = styled.div`
+	background: #e0e0e0;
+	border-radius: 2.75rem;
+	width: 6rem;
+	height: 3rem;
+	margin-right: 0.375rem;
+	margin-bottom: 0.625rem;
 `
 
 const SvgIcon = () => (
@@ -126,12 +137,19 @@ const PokemonList = () => {
 	const [selectedPokemon, setSelectedPokemon] = useState<PokemonDetails | null>(
 		null
 	)
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		axios
 			.get('https://pokeapi.co/api/v2/pokemon?limit=6')
-			.then(response => setPokemons(response.data.results))
-			.catch(error => console.error('Error fetching Pokemons', error))
+			.then(response => {
+				setPokemons(response.data.results)
+				setIsLoading(false)
+			})
+			.catch(error => {
+				console.error('Error fetching Pokemons', error)
+				setIsLoading(false)
+			})
 	}, [])
 
 	const handlePokemonClick = (url: string) => {
@@ -165,13 +183,17 @@ const PokemonList = () => {
 			</TitleContainer>
 			<ContentContainer>
 				<ChipList>
-					{pokemons.map(pokemon => (
-						<PokemonChip
-							key={pokemon.url}
-							name={pokemon.name}
-							onClick={() => handlePokemonClick(pokemon.url)}
-						/>
-					))}
+					{isLoading
+						? Array.from({ length: 6 }).map((_, index) => (
+								<PlaceholderChip key={index} />
+						  ))
+						: pokemons.map(pokemon => (
+								<PokemonChip
+									key={pokemon.url}
+									name={pokemon.name}
+									onClick={() => handlePokemonClick(pokemon.url)}
+								/>
+						  ))}
 				</ChipList>
 				{selectedPokemon ? (
 					<PokemonCard pokemon={selectedPokemon}></PokemonCard>
