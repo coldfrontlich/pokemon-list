@@ -5,6 +5,8 @@ import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://coldfrontlich.github.io',
+	base: '/pokemon-list',
 	integrations: [react()],
 	vite: {
 		plugins: [wyw()],
