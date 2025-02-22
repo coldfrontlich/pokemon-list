@@ -141,7 +141,7 @@ const PokemonList = () => {
 
 	useEffect(() => {
 		axios
-			.get('https://pokeapi.co/api/v2/pokemon?limit=6')
+			.get('https://pokeapi.co/api/v2/pokemon?limit=10')
 			.then(response => {
 				setPokemons(response.data.results)
 				setIsLoading(false)
@@ -184,7 +184,7 @@ const PokemonList = () => {
 			<ContentContainer>
 				<ChipList>
 					{isLoading
-						? Array.from({ length: 6 }).map((_, index) => (
+						? Array.from({ length: 10 }).map((_, index) => (
 								<PlaceholderChip key={index} />
 						  ))
 						: pokemons.map(pokemon => (
